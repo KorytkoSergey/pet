@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import random
 
 
@@ -21,18 +23,15 @@ def name_guest():  # функция знакомства
 
 def first_step():  # функция выбора первого хода
     step = input('В игре важно, кто начнет. Поэтому, я хочу спросить, кто начнет? Подумай и напиши один из вариантов'
-                 '"Я", "Ты" или "Случайный выбор"\n').lower()
+                 ' "Я", "Ты" или "Случайный выбор"\n').lower()
+    dict_ch = {'ты': first_step_by_bot(), 'я': first_step_by_player()}
     if step == 'случайный выбор':
-        num = random.randint(0, 1)
-        coin = num
+        coin = random.choice(0, 1)
         if coin == 0:
             return first_step_by_bot()  # вызов функции начала игры, где начинает бот
         else:
             return first_step_by_player()  # вызов функции начала игры, где начинает первый игрок
-    elif step == 'ты':
-        return first_step_by_bot()  # вызов функции начала игры, где начинает бот
-    elif step == 'я':
-        return first_step_by_player()  # вызов функции начала игры, где начинает первый игрок
+    return dict_ch[step]
 
 
 def check_name_of_the_city(name_of_the_city):  # номинальная проверка на правильность названия города(0 - нет, 1 - да)
